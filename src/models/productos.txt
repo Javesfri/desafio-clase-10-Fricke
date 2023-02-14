@@ -1,0 +1,1 @@
+[{"title":"Comutadora","description":"Compu Gamer Gama Alta","price":5000,"thumbnail":"Sin Imagen","code":"9989","stock":33,"status":true,"id":2},{"title":"Monitor","description":"MOnitor Gamer Gama Alta","price":300,"thumbnail":"Sin Imagen","code":"99999","stock":33,"status":true,"id":4}]

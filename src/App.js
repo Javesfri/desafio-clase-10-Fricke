@@ -1,34 +1,24 @@
-import express from 'express'
-import fs from 'fs'
+import express from "express";
+import { __dirname, __filename } from "./path.js";
+import routerProduct from "./routes/products.routes.js";
+import routerCart from "./routes/carts.routes.js";
+
+ 
 const app = express();
-const PORT =4000
-const products =JSON.parse(await fs.promises.readFile("./product.txt","utf-8"))
-app.get('/products',async (req,res)=>{
-    let {limit} = req.query
-    /*const products =JSON.parse(await fs.promises.readFile("./product.txt","utf-8"))*/
-    if(limit){
-       let productsLimit  = products.slice(0,parseInt(limit))
-        res.send(JSON.stringify(productsLimit))
-    }else{
-        res.send(JSON.stringify(products))
+const PORT = 8080;
 
-    }
-})
+//Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/products/:pid',async (req,res)=>{
-    const pid=req.params.pid;
-    /*const products =JSON.parse(await fs.promises.readFile("./product.txt","utf-8"))*/
-    let productId=products.find(prod=> prod.id ===parseInt(pid))
-    if(productId){
-        res.send(JSON.stringify(productId))
-    }
-    else{
-        res.send("EL PRoducto no existe")
-    }
-    
-})
 
-app.listen(PORT, () =>{
-    console.log(`Server on Port ${PORT}`)
-})
+//Routes
+app.use('/static',express.static(__dirname +'/public'))
+app.use("/api/products", routerProduct);
+app.use("/api/carts", routerCart)
 
+
+
+app.listen(PORT, () => {
+  console.log(`Server on Port ${PORT}`);
+});
