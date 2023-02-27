@@ -6,4 +6,8 @@ realTimeProducts.get("/",(req,res)=>{
     res.render("realTimeProducts", {})
 })
 
+
+
+
+
 export default realTimeProducts

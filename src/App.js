@@ -22,6 +22,7 @@ const content = await fs.promises.readFile('src/models/productos.txt', "utf-8");
 const productos = JSON.parse(content);
 
 io.on("connection", (socket) =>{ //io.on cuando se establece conexion 
+  console.log("Cliente Conectado")
   socket.emit("productos",productos)
   socket.on("producto", prod =>{
     console.log(prod)
@@ -32,6 +33,12 @@ io.on("connection", (socket) =>{ //io.on cuando se establece conexion
 
 
 
+//HBS
+app.get("/",  (req, res) => {
+  res.render("home", {
+    productos
+  });
+});
 
 
 
@@ -49,12 +56,5 @@ app.use("/api/products", routerProduct);
 app.use("/api/carts", routerCart);
 app.use("/realtimeproducts",realTimeProducts);
 
-//HBS
-app.get("/", async (req, res) => {
-  res.render("home", {
-    productos
-    
-  });
-});
 
 

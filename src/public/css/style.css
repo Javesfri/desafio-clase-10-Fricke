@@ -36,3 +36,11 @@ button{
     border: 5px solid black;
     width: 300px;
 }
+
+.imagen-product{
+    width: 150px;
+}
+
+.imagen-list{
+    width: 50px;
+}
